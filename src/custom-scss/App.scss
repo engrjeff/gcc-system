@@ -1,0 +1,27 @@
+$body-bg: #fafbfe;
+$font-family-sans-serif: "Open Sans",
+  // Safari for OS X and iOS (San Francisco)
+    -apple-system,
+  // Chrome < 56 for OS X (San Francisco)
+    BlinkMacSystemFont,
+  // Windows
+    "Segoe UI",
+  // Android
+    "Roboto",
+  // Basic web fallback
+    "Helvetica Neue",
+  Arial, sans-serif,
+  // Emoji fonts
+    "Apple Color Emoji",
+  "Segoe UI Emoji", "Segoe UI Symbol" !default;
+
+$theme-colors: (
+  "primary": #0a2749,
+  "primary-light": #1e3957,
+  "gold": #cc922f,
+  "danger": #ff5b5b,
+  "body-color": #fafbfe,
+  "off-white": #f1f3fa,
+);
+
+@import "~bootstrap/scss/bootstrap";
