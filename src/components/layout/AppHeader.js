@@ -4,7 +4,7 @@ import { Navbar, Nav } from "react-bootstrap";
 import * as ROUTES from "../../constants/routes";
 import { TogglerContext } from "../../context/TogglerContext";
 
-const AppHeader = ({ title = "" }) => {
+const AppHeader = () => {
   const { setTogglerState } = useContext(TogglerContext);
 
   const renderUserOptions = () => {
@@ -44,14 +44,11 @@ const AppHeader = ({ title = "" }) => {
 
   return (
     <Navbar bg="white" expand="lg" variant="light" className="app-shadow">
-      <div
-        className="app-menu-toggler d-sm-none"
-        onClick={() => setTogglerState(true)}
-      >
+      <div className="app-menu-toggler" onClick={() => setTogglerState(true)}>
         <span className="fas fa-bars"></span>
       </div>
       <Navbar.Brand>
-        <h6 className="mb-0">{title}</h6>
+        <h5 className="mb-0 mx-2">GCC App</h5>
       </Navbar.Brand>
       {renderMainNav()}
       {renderUserOptions()}

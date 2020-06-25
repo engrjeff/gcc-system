@@ -22,7 +22,7 @@ const AppMobileSidebar = () => {
   ];
 
   const { togglerState, setTogglerState } = useContext(TogglerContext);
-  const classes = `app-sidebar bg-primary text-white mobile app-shadow d-block d-sm-none ${
+  const classes = `app-sidebar-mobile bg-primary text-white app-shadow d-block d-sm-none ${
     togglerState ? "show" : ""
   }`;
   const renderSidebarMenu = () => {

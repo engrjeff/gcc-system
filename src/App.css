@@ -102,16 +102,27 @@ a:active {
 
 /* App Sidebar */
 .app-sidebar {
-  height: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 250px;
+  transform: translateX(-250px);
+  transition: transform 0.3s;
+  z-index: 998;
 }
-.app-sidebar.mobile {
+
+.app-sidebar.show {
+  transform: translateX(0);
+}
+.app-sidebar-mobile {
   width: 250px;
   height: 100%;
   transform: translateX(-250px);
   transition: transform 0.3s;
 }
 
-.app-sidebar.mobile.show {
+.app-sidebar-mobile.show {
   transform: translateX(0);
 }
 .app-sidebar-head {
@@ -161,21 +172,21 @@ a:active {
   color: white;
   background-color: var(--gold);
 }
+.menu-close-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
 
 @media screen and (max-width: 600px) {
-  .app-sidebar.mobile {
+  .app-sidebar-mobile {
     position: absolute;
     top: 0;
     left: 0;
     bottom: 0;
     height: 100vh;
     z-index: 999;
-  }
-  .menu-close-btn {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    cursor: pointer;
   }
 }
 /* menu toggler */
@@ -191,4 +202,37 @@ a:active {
 }
 .app-menu-toggler:hover {
   background-color: var(--off-white);
+}
+
+/* Customized Bootstrap CSS */
+.form-control,
+.form-control:focus {
+  box-shadow: none !important;
+  border-radius: 1px !important;
+}
+
+.form-label {
+  font-size: 14px !important;
+}
+
+.btn {
+  border-radius: 1px !important;
+}
+
+/* PROFILE PAGE */
+.profile-view-about {
+  font-size: 14px !important;
+}
+
+.profile-view-about p {
+  margin-bottom: 0 !important;
+}
+
+.profile-view-about .row {
+  margin-bottom: 0.5rem !important;
+}
+
+.profile-view-about-head,
+.profile-view-info-head {
+  font-weight: 600;
 }
