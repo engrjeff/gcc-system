@@ -2,9 +2,9 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import googleIcon from "./icons/google.svg";
 
-const GoogleButton = () => {
+const GoogleButton = ({ onClick }) => {
   return (
-    <Button block size="sm" className="bg-white text-primary">
+    <Button block size="sm" className="bg-white text-primary" onClick={onClick}>
       <div className="d-flex align-items-center justify-content-center">
         <img
           src={googleIcon}

@@ -4,8 +4,9 @@ import { Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import { TogglerContext } from "../../context/TogglerContext";
+import { connect } from "react-redux";
 
-const AppSidebar = () => {
+const AppSidebar = (props) => {
   const MenuItems = [
     { path: ROUTES.DASHBOARD, icon: "columns", label: "Dashboard" },
     { path: ROUTES.PROFILE, icon: "user", label: "Profile" },
@@ -15,6 +16,7 @@ const AppSidebar = () => {
   ];
 
   const { togglerState, setTogglerState } = useContext(TogglerContext);
+  const { isAuthenticated, user } = props;
 
   const renderSidebarMenu = () => {
     return (
@@ -29,6 +31,14 @@ const AppSidebar = () => {
             </NavLink>
           </Nav.Item>
         ))}
+        {isAuthenticated && user && user.role === "admin" && (
+          <Nav.Item as="li" className="app-sidebar-item">
+            <NavLink to={ROUTES.ADMIN} className="app-sidebar-link">
+              <span className="mx-3 fas fa-user app-sidebar-icon"></span>
+              <p className="mb-0">Admin</p>
+            </NavLink>
+          </Nav.Item>
+        )}
       </Nav>
     );
   };
@@ -52,4 +62,11 @@ const AppSidebar = () => {
   );
 };
 
-export default AppSidebar;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
+  };
+};
+
+export default connect(mapStateToProps)(AppSidebar);

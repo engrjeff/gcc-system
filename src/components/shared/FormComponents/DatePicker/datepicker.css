@@ -1,0 +1,179 @@
+.date-picker-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.date-picker {
+  /* border: 1px solid var(--primary); */
+  display: inline-block;
+  width: 270px;
+  font-size: 14px;
+  user-select: none;
+  background-color: white;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+.date-picker-head {
+  width: 100%;
+  display: flex;
+}
+
+.date-picker-head-arrow-left,
+.date-picker-head-arrow-right,
+.date-picker-head-arrow-up,
+.date-picker-head-arrow-down {
+  color: var(--primary);
+  margin: 5px 10px;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.date-picker-head-current {
+  font-size: 14px;
+  font-weight: 600;
+  /* width: 186px; */
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 5px 10px;
+  box-sizing: border-box;
+}
+
+.date-picker-head-current span {
+  padding: 0 5px;
+}
+
+.date-picker-head-current span:hover,
+.date-picker-head-arrow-left:hover,
+.date-picker-head-arrow-right:hover,
+.date-picker-head-arrow-up:hover,
+.date-picker-head-arrow-down:hover {
+  background-color: var(--off-white);
+}
+
+.date-picker-body,
+.date-picker-day-of-week,
+.date-picker-months,
+.date-picker-years-content {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 5px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.date-cell,
+.day-of-week-cell {
+  width: 14.2857%;
+  box-sizing: border-box;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.date-cell {
+  border-radius: 50%;
+  height: 34px;
+}
+
+.date-cell.excluded,
+.date-month-cell.excluded,
+.date-year-cell.excluded,
+.date-picker-head-arrow-left.disabled,
+.date-picker-head-arrow-right.disabled,
+.date-picker-head-arrow-up.disabled,
+.date-picker-head-arrow-down.disabled {
+  color: #ccc;
+  pointer-events: none;
+}
+.date-cell:not(.excluded):not(.current):hover,
+.date-cell:not(.excluded):not(.current):active {
+  background-color: var(--off-white);
+  color: var(--primary);
+}
+
+.date-cell:not(.excluded).current {
+  background-color: var(--primary);
+  color: white;
+}
+
+.day-of-week-cell {
+  font-weight: 600;
+  color: var(--primary);
+  cursor: default;
+}
+
+.date-month-cell,
+.date-year-cell {
+  width: 33.3333%;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.date-month-cell:not(.current):hover,
+.date-month-cell:not(.current):active {
+  background-color: var(--primary);
+  opacity: 0.7;
+  color: white;
+}
+
+.date-month-cell.current {
+  background-color: var(--primary);
+  color: white;
+}
+.date-year-cell:not(.current):hover,
+.date-year-cell:not(.current):active {
+  background-color: var(--primary);
+  opacity: 0.7;
+  color: white;
+}
+
+.date-year-cell.current {
+  background-color: var(--primary);
+  color: white;
+}
+.date-picker-years-arrows {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.date-picker-head-arrow-right {
+  order: 3;
+}
+.date-picker-buttons {
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.date-picker-buttons .btn {
+  width: 30%;
+  font-size: 13px;
+}

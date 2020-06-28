@@ -73,7 +73,8 @@ a:active {
   background-color: var(--off-white);
 }
 
-.user-avatar {
+.user-avatar,
+.user-avatar-big {
   width: 32px;
   height: 32px;
   display: flex;
@@ -83,6 +84,12 @@ a:active {
   color: #fff;
   background-color: var(--primary-light);
   cursor: pointer;
+}
+
+.user-avatar-big {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
 }
 
 .user-avatar:hover {
@@ -190,7 +197,8 @@ a:active {
   }
 }
 /* menu toggler */
-.app-menu-toggler {
+.app-menu-toggler,
+.app-signout-btn {
   cursor: pointer;
   width: 35px;
   height: 35px;
@@ -200,7 +208,8 @@ a:active {
   border-radius: 50%;
   transition: all 0.3s;
 }
-.app-menu-toggler:hover {
+.app-menu-toggler:hover,
+.app-signout-btn:hover {
   background-color: var(--off-white);
 }
 
@@ -209,6 +218,10 @@ a:active {
 .form-control:focus {
   box-shadow: none !important;
   border-radius: 1px !important;
+}
+
+.form-control[readonly] {
+  background-color: inherit !important;
 }
 
 .form-label {
@@ -227,7 +240,9 @@ a:active {
 .profile-view-about p {
   margin-bottom: 0 !important;
 }
-
+.profile-view-about p:not(.p-email) {
+  text-transform: capitalize;
+}
 .profile-view-about .row {
   margin-bottom: 0.5rem !important;
 }

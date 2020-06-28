@@ -1,18 +1,21 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { Button, Alert } from "react-bootstrap";
 import Joi from "@hapi/joi";
+
 import Input from "./Input";
 import Select from "./Select";
 import RadioGroup from "./RadioGroup";
 import FormBrand from "./FormBrand";
-import "./forms.css";
-import { Button } from "react-bootstrap";
 import GoogleButton from "./GoogleButton";
+import DatePicker from "../../shared/FormComponents/DatePicker/DatePicker";
+import "./forms.css";
 
 class Form extends Component {
   state = {
     data: {},
     errors: {},
+    pickerShown: false,
   };
 
   // VALIDATION
@@ -85,20 +88,44 @@ class Form extends Component {
     );
   }
 
-  renderDateInput(name, label, type = "text", placeholder, onFocus) {
-    const { data, errors } = this.state;
+  renderDateInput(name, label, placeholder, helperText) {
+    const { data, errors, pickerShown } = this.state;
+
+    const datePickerChangeHandler = (selectedDate) => {
+      const d = { ...data };
+      d[name] = selectedDate;
+      this.setState({ data: d });
+    };
+
+    const currentDate = () => {
+      const dateStr = data[name];
+      if (!dateStr || dateStr === "") return new Date();
+      return new Date(dateStr);
+    };
     return (
-      <Input
-        type={type}
-        name={name}
-        label={label}
-        value={data[name]}
-        error={errors[name]}
-        placeholder={placeholder}
-        onChange={this.handleChange}
-        onClick={onFocus}
-        readOnly
-      />
+      <>
+        <Input
+          type="text"
+          name={name}
+          label={label}
+          value={data[name]}
+          error={errors[name]}
+          placeholder={placeholder}
+          onChange={this.handleChange}
+          onFocus={() => this.setState({ pickerShown: true })}
+          helperText={helperText}
+          size="sm"
+          readOnly
+        />
+        {pickerShown && (
+          <DatePicker
+            currentDate={currentDate()}
+            onChange={datePickerChangeHandler}
+            onClose={() => this.setState({ pickerShown: false })}
+            showTodayBtn
+          />
+        )}
+      </>
     );
   }
   renderSelect(name, label, options) {
@@ -142,8 +169,8 @@ class Form extends Component {
     );
   }
 
-  renderGoogleButton() {
-    return <GoogleButton />;
+  renderGoogleButton(onClick) {
+    return <GoogleButton onClick={onClick} />;
   }
 
   showAlert(error) {
@@ -180,6 +207,14 @@ class Form extends Component {
           Forgot your password?
         </Link>
       </div>
+    );
+  }
+
+  renderError(errorMessage) {
+    return (
+      <Alert variant="danger" className="p-1 px-2 text-center">
+        {errorMessage}
+      </Alert>
     );
   }
 }

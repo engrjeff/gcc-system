@@ -10,6 +10,7 @@ import {
   CHURCH_STATUS,
   MEMBER_TYPES,
 } from "../../../constants/appConstants";
+import { parseDate } from "../../../helpers/utils";
 
 class ProfileForm extends Form {
   state = {
@@ -33,8 +34,38 @@ class ProfileForm extends Form {
     churchStatus: Joi.string(),
   });
 
+  componentDidMount() {
+    this.getProfileDataOnLoad();
+  }
+
+  getProfileDataOnLoad() {
+    if (!this.props.userProfile.profile) return;
+    const {
+      address,
+      birthdate,
+      gender,
+      type,
+      cellStatus,
+      churchStatus,
+    } = this.props.userProfile.profile;
+    const profileData = {
+      address,
+      birthdate: parseDate(birthdate),
+      gender,
+      type,
+      cellStatus,
+      churchStatus,
+    };
+
+    this.setState({ data: profileData });
+  }
+
   doSubmit() {
-    console.log(this.state.data);
+    const profileData = { ...this.state.data };
+    const { userProfile, saveProfile, history } = this.props;
+    profileData.leader = userProfile.profile.leader._id;
+    const isUpdate = userProfile.profile ? true : false;
+    saveProfile(profileData, history, ROUTES.PROFILE, isUpdate);
   }
 
   render() {
@@ -50,7 +81,7 @@ class ProfileForm extends Form {
         <hr />
         <BForm onSubmit={this.handleSubmit} className="p-2">
           {this.renderInput("address", "Address")}
-          {this.renderInput("birthdate", "Birthdate")}
+          {this.renderDateInput("birthdate", "Birthdate")}
           <Row>
             <Col xs="12" md="6">
               {this.renderRadioGroup("gender", "Gender", GENDERS)}
