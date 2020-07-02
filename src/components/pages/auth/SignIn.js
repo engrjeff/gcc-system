@@ -28,7 +28,7 @@ class SignIn extends Form {
   }
 
   render() {
-    if (this.props.isAuthenticated) return <Redirect to={ROUTES.DASHBOARD} />;
+    if (this.props.isAuthenticated) return <Redirect to={ROUTES.PROFILE} />;
 
     return (
       <div className="form-auth">

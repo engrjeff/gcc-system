@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 export const mapCellStatus = (cellStatus) => {
   switch (cellStatus) {
     case "1T":
@@ -10,6 +12,21 @@ export const mapCellStatus = (cellStatus) => {
       return "4th Timer";
     case "R":
       return "Regular";
+    default:
+      return "";
+  }
+};
+
+export const mapMemberType = (memberType) => {
+  switch (memberType) {
+    case "parent":
+      return "Parent";
+    case "student":
+      return "Student";
+    case "youngpro":
+      return "Young Professional";
+    case "kid":
+      return "Kids / Children";
     default:
       return "";
   }
@@ -36,4 +53,11 @@ export const parseDate = (_date) => {
   if (day < 10) day = "0" + day;
   const year = date.getFullYear();
   return `${month}/${day}/${year}`;
+};
+
+export const range = (start, end) => _.range(start, end + 1);
+
+export const paginate = (items, currentPage, pageSize) => {
+  const startIndex = (currentPage - 1) * pageSize;
+  return _(items).slice(startIndex).take(pageSize).value();
 };

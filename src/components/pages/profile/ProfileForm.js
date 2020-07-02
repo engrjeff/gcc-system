@@ -18,9 +18,9 @@ class ProfileForm extends Form {
       address: "",
       birthdate: "",
       gender: "male",
-      type: "parent",
-      cellStatus: "R",
-      churchStatus: "CICS",
+      type: "",
+      cellStatus: "",
+      churchStatus: "",
     },
     errors: {},
   };
@@ -63,9 +63,8 @@ class ProfileForm extends Form {
   doSubmit() {
     const profileData = { ...this.state.data };
     const { userProfile, saveProfile, history } = this.props;
-    profileData.leader = userProfile.profile.leader._id;
     const isUpdate = userProfile.profile ? true : false;
-    saveProfile(profileData, history, ROUTES.PROFILE, isUpdate);
+    saveProfile(profileData, isUpdate, history, ROUTES.PROFILE);
   }
 
   render() {
@@ -81,7 +80,7 @@ class ProfileForm extends Form {
         <hr />
         <BForm onSubmit={this.handleSubmit} className="p-2">
           {this.renderInput("address", "Address")}
-          {this.renderDateInput("birthdate", "Birthdate")}
+          {this.renderDateInput("birthdate", "Birthdate", false)}
           <Row>
             <Col xs="12" md="6">
               {this.renderRadioGroup("gender", "Gender", GENDERS)}

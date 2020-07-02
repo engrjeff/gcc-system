@@ -10,6 +10,16 @@ body {
   line-height: 1.6;
 }
 
+*::-webkit-scrollbar {
+  width: 6px; /* width of the entire scrollbar */
+}
+*::-webkit-scrollbar-track {
+  background: #dee2e6; /* color of the tracking area */
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #ccc; /* color of the scroll thumb */
+}
+
 a,
 a:visited,
 a:link,
@@ -47,6 +57,16 @@ a:active {
 .nav-link.active {
   background-color: var(--off-white);
 }
+
+.nav-link.options {
+  padding: 10px !important;
+  margin: 0 0 !important;
+  font-weight: normal !important;
+}
+
+.nav-link.options span {
+  margin-right: 5px;
+}
 /* .nav-link.active:after {
   content: "";
   position: absolute;
@@ -65,7 +85,9 @@ a:active {
   height: 100%;
   cursor: pointer;
   padding: 0.3rem;
+  border-radius: 32px;
   transition: all 0.3s;
+  position: relative;
 }
 
 .nav-user-options:hover,
@@ -102,9 +124,32 @@ a:active {
   color: inherit;
 }
 
+.user-options {
+  position: absolute;
+  top: 90%;
+  right: 90%;
+  border: 1px solid #dee2e6;
+  border-radius: 3px;
+  background-color: white;
+  width: 130px;
+  transform: scale(0);
+  transition: transform 0.3s;
+  padding: 3px 0;
+}
+
+.user-options.show {
+  transform: scale(1);
+}
+
 .app-shadow {
   -webkit-box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
   box-shadow: 0 0 35px 0 rgba(154, 161, 171, 0.15);
+}
+
+.app-uppercase {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 /* App Sidebar */
@@ -143,6 +188,17 @@ a:active {
 .app-sidebar-logo {
   width: 60px;
 }
+
+.nav-group-label {
+  color: #ccc;
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 10px;
+  margin-left: 22px;
+  margin-top: 10px;
+}
+
 .app-sidebar-text {
   font-size: 13px;
   text-transform: uppercase;
@@ -195,10 +251,34 @@ a:active {
     height: 100vh;
     z-index: 999;
   }
+
+  .navbar {
+    height: 70px;
+    position: relative;
+  }
+
+  .navbar-brand {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .nav-user-options {
+    margin: 0 0;
+    margin-left: auto;
+    padding: 0;
+    transition: all 0.3s;
+  }
+
+  .app-menu-toggler {
+    font-size: 22px;
+  }
 }
 /* menu toggler */
 .app-menu-toggler,
-.app-signout-btn {
+.app-signout-btn,
+.app-clipboard-btn {
   cursor: pointer;
   width: 35px;
   height: 35px;
@@ -208,8 +288,15 @@ a:active {
   border-radius: 50%;
   transition: all 0.3s;
 }
+
+.app-clipboard-btn {
+  border-radius: 0;
+  height: 100%;
+}
+
 .app-menu-toggler:hover,
-.app-signout-btn:hover {
+.app-signout-btn:hover,
+.app-clipboard-btn:hover {
   background-color: var(--off-white);
 }
 
@@ -224,7 +311,8 @@ a:active {
   background-color: inherit !important;
 }
 
-.form-label {
+.form-label,
+.form-control {
   font-size: 14px !important;
 }
 
@@ -250,4 +338,42 @@ a:active {
 .profile-view-about-head,
 .profile-view-info-head {
   font-weight: 600;
+}
+
+/* tooltip styles */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltiptext {
+  visibility: hidden;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 99;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -75px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }

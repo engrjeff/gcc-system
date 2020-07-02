@@ -7,6 +7,7 @@ const Input = ({
   placeholder,
   error,
   helperText = "",
+  size,
   ...rest
 }) => {
   return (
@@ -14,6 +15,7 @@ const Input = ({
       <Form.Label htmlFor={name}>{label}</Form.Label>
       <Form.Control
         id={name}
+        size={size}
         placeholder={placeholder || `Enter your ${name}`}
         name={name}
         {...rest}

@@ -5,6 +5,7 @@ import {
   parseDate,
   mapCellStatus,
   mapChurchStatus,
+  mapMemberType,
 } from "../../../helpers/utils";
 
 const ProfileView = (props) => {
@@ -36,7 +37,6 @@ const ProfileView = (props) => {
     churchStatus,
     gender,
     type,
-    leader,
   } = userProfile.profile;
 
   return (
@@ -107,7 +107,7 @@ const ProfileView = (props) => {
             <strong className="mb-0 text-primary">Cell Leader</strong>
           </Col>
           <Col xs={7} md={9}>
-            <p>{leader.name}</p>
+            <p>{user.leader.name}</p>
           </Col>
         </Row>
         <Row>
@@ -115,7 +115,7 @@ const ProfileView = (props) => {
             <strong className="mb-0 text-primary">Member Type</strong>
           </Col>
           <Col xs={7} md={9}>
-            <p>{type}</p>
+            <p>{mapMemberType(type)}</p>
           </Col>
         </Row>
         <Row>

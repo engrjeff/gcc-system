@@ -9,7 +9,20 @@ import {
   CLEAR_PROFILE,
   CLEAR_USER_CELLGROUP,
   CLEAR_USER_MEMBERS,
+  AUTH_PASSWORD_CONFIRMED_SUCCESS,
+  AUTH_PASSWORD_CONFIRMED_ERROR,
 } from "../types";
+
+const clearError = (dispatch, action = AUTH_ERROR, timeout = 3000) => {
+  setTimeout(
+    () =>
+      dispatch({
+        type: action,
+        payload: null,
+      }),
+    timeout
+  );
+};
 
 // load user
 export const loadUser = () => async (dispatch) => {
@@ -26,23 +39,16 @@ export const loadUser = () => async (dispatch) => {
 };
 
 // register user
-export const register = ({ name, email, password }) => async (dispatch) => {
-  const data = { name, email, password };
+export const register = (formData) => async (dispatch) => {
+  const { name, email, password, leader } = formData;
+  const data = { name, email, password, leader };
   const afterSuccess = () => dispatch(loadUser());
-  const afterError = () =>
-    setTimeout(
-      () =>
-        dispatch({
-          type: AUTH_ERROR,
-          payload: null,
-        }),
-      3000
-    );
+  const afterError = () => clearError(dispatch);
 
   dispatch({
     type: API_CALL_BEGAN,
     payload: {
-      url: "/api/v1/auth/register",
+      url: "/api/v1/auth/registerWithLeader",
       method: "post",
       data,
       onStart: AUTH_REQUESTED,
@@ -59,15 +65,7 @@ export const register = ({ name, email, password }) => async (dispatch) => {
 export const login = ({ email, password }) => async (dispatch) => {
   const data = { email, password };
   const afterSuccess = () => dispatch(loadUser());
-  const afterError = () =>
-    setTimeout(
-      () =>
-        dispatch({
-          type: AUTH_ERROR,
-          payload: null,
-        }),
-      3000
-    );
+  const afterError = () => clearError(dispatch);
 
   dispatch({
     type: API_CALL_BEGAN,
@@ -78,6 +76,28 @@ export const login = ({ email, password }) => async (dispatch) => {
       onStart: AUTH_REQUESTED,
       onSuccess: AUTH_LOGIN_SUCCESS,
       onError: AUTH_ERROR,
+      afterSuccess,
+      afterError,
+      expectError: true,
+    },
+  });
+};
+
+// password confirm
+export const confirmPassword = (password, callback) => async (dispatch) => {
+  const data = { password };
+  const afterSuccess = () => callback();
+  const afterError = () => clearError(dispatch, AUTH_PASSWORD_CONFIRMED_ERROR);
+
+  dispatch({
+    type: API_CALL_BEGAN,
+    payload: {
+      url: "/api/v1/auth/passwordconfirm",
+      method: "post",
+      data,
+      onStart: AUTH_REQUESTED,
+      onSuccess: AUTH_PASSWORD_CONFIRMED_SUCCESS,
+      onError: AUTH_PASSWORD_CONFIRMED_ERROR,
       afterSuccess,
       afterError,
       expectError: true,

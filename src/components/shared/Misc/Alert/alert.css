@@ -1,0 +1,32 @@
+/*  Alert */
+.app-alert {
+  position: absolute;
+  min-width: 150px;
+  right: -5px;
+  top: 70px;
+  display: inline-block;
+  padding: 20px;
+  font-size: 16px;
+  font-size: 500;
+  background-color: var(--primary);
+  color: var(--white);
+  z-index: 900;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+.app-alert-success {
+  background-color: var(--color-success);
+  color: var(--white);
+}
+.app-alert-danger {
+  background-color: var(--color-danger);
+  color: var(--white);
+}
+.app-alert-info {
+  background-color: var(--color-info);
+  color: var(--white);
+}
+.app-alert-warn {
+  background-color: var(--color-warning);
+  color: #333;
+}

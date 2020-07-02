@@ -56,6 +56,23 @@
   text-decoration: underline !important;
 }
 
+.form-search {
+  position: relative;
+  padding-right: 31px !important;
+}
+
+.form-search-icon {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  right: 1px;
+  height: 35px;
+  width: 30px;
+  color: #ccc;
+}
+
 @media screen and (max-width: 600px) {
   .form-auth,
   .form-profile {

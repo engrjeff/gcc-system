@@ -1,0 +1,118 @@
+.app-modal-container {
+  width: 100vw;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.app-modal-container.hide {
+  display: none;
+}
+
+.app-modal {
+  background-color: white;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  position: relative;
+  /* min-height: 40%; */
+  max-height: 87%;
+  min-width: 50%;
+  max-width: 95%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  animation: modal-appear 0.3s;
+}
+.app-modal-header {
+  width: 100%;
+  height: 50px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  user-select: none;
+}
+.app-modal-title {
+  margin-bottom: 0;
+  font-weight: 600;
+}
+.app-modal-closebtn {
+  width: 30px;
+  height: 100%;
+  margin-left: auto;
+
+  cursor: pointer;
+}
+.app-modal-closebtn > span {
+  height: 100%;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+.app-modal-closebtn:hover span {
+  color: var(--primary);
+  background-color: var(--off-white);
+}
+
+.app-modal-body {
+  width: 100%;
+  padding: 10px 15px;
+  max-height: 40%;
+  overflow-y: auto;
+}
+
+.app-modal-error {
+  display: flex;
+  margin: 10px 0;
+  font-size: 14px;
+  color: var(--danger);
+  justify-content: center;
+  align-items: center;
+}
+
+.app-modal-footer {
+  margin-top: auto;
+  width: 100%;
+  padding: 15px 15px;
+  display: flex;
+  align-items: center;
+}
+.app-modal-buttons {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: auto;
+}
+
+.modal-btn {
+  min-width: 62px;
+  margin-left: 20px;
+}
+
+@keyframes modal-appear {
+  0% {
+    transform: scale(0);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .app-modal {
+    min-width: 85%;
+    max-height: 70%;
+  }
+}

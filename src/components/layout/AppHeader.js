@@ -1,7 +1,7 @@
-import React, { Fragment, useContext } from "react";
+import React, { Fragment, useContext, useState } from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
-import { Spinner } from "../shared/Misc/MiscComponents";
+import { Spinner, Modal } from "../shared/Misc/MiscComponents";
 import { TogglerContext } from "../../context/TogglerContext";
 import { connect } from "react-redux";
 import { logout } from "../../state/actions/authActions";
@@ -9,17 +9,37 @@ import * as ROUTES from "../../constants/routes";
 
 const AppHeader = (props) => {
   const { setTogglerState } = useContext(TogglerContext);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showUserOptions, setShowUserOptions] = useState(false);
 
   const { isAuthenticated, loading, user, logout, history } = props;
 
   const renderUserOptions = () => {
     return isAuthenticated && user ? (
-      <NavLink to={ROUTES.DASHBOARD} className="nav-user-options">
+      <div
+        className="nav-user-options"
+        onClick={() => setShowUserOptions((prev) => !prev)}
+      >
         <div className="user-avatar">
           <h6 className="mb-0">{user.name[0]}</h6>
         </div>
-        <p className="user-avatar-name mb-0 px-2">{user.name}</p>
-      </NavLink>
+        <p className="user-avatar-name mb-0 px-2 d-none d-sm-block">
+          {user.name}
+        </p>
+        <div
+          className={`user-options app-shadow ${showUserOptions ? "show" : ""}`}
+        >
+          <NavLink className="nav-link options" to={ROUTES.PROFILE} exact>
+            <span className="fas fa-user"></span> Profile
+          </NavLink>
+          <div
+            className="nav-link options"
+            onClick={() => setShowLogoutModal(true)}
+          >
+            <span className="fas fa-sign-out-alt"></span> Sign Out
+          </div>
+        </div>
+      </div>
     ) : null;
   };
 
@@ -68,7 +88,7 @@ const AppHeader = (props) => {
       <div
         className="app-signout-btn"
         title="Sign Out"
-        onClick={() => logout(history, ROUTES.SIGN_IN)}
+        onClick={() => setShowLogoutModal(true)}
       >
         <span className="fas fa-sign-out-alt"></span>
       </div>
@@ -83,14 +103,34 @@ const AppHeader = (props) => {
     );
   };
 
+  const renderModalForLogout = () => {
+    return (
+      <Modal
+        title="Logout"
+        shown={showLogoutModal}
+        oKText="Confirm"
+        onOk={handleLogout}
+        onClose={() => setShowLogoutModal(false)}
+      >
+        <p className="mb-0">You are about to log out.</p>
+      </Modal>
+    );
+  };
+
+  const handleLogout = () => {
+    setShowLogoutModal(false);
+    logout(history, ROUTES.SIGN_IN);
+  };
+
   return (
     <Navbar bg="white" expand="lg" variant="light" className="app-shadow">
       {loading && <Spinner />}
+      {renderModalForLogout()}
       {renderMenuToggler()}
       {renderBrand()}
       {renderMainNav()}
       {renderUserOptions()}
-      {renderSignOutButton()}
+      {false && renderSignOutButton()}
     </Navbar>
   );
 };

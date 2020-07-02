@@ -31,3 +31,9 @@ export const MEMBER_TYPES = [
   { id: 3, value: "student", label: "Student" },
   { id: 4, value: "kid", label: "Kid" },
 ];
+
+export const USER_ROLES = [
+  { id: 1, value: "admin", label: "Admin" },
+  { id: 2, value: "primary", label: "Primary Leader" },
+  { id: 3, value: "leader", label: "Leader" },
+];

@@ -29,7 +29,9 @@ class Register extends Form {
   });
 
   doSubmit() {
-    this.props.register(this.state.data);
+    const data = { ...this.state.data };
+    data.leader = this.props.match.params.primary_id;
+    this.props.register(data);
   }
 
   render() {

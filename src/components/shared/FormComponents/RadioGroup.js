@@ -1,11 +1,22 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-const RadioGroup = ({ name, label, options, value, onChange }) => {
+const RadioGroup = ({
+  name,
+  label,
+  options,
+  value,
+  onChange,
+  stacked = false,
+}) => {
   return (
     <Form.Group>
       <Form.Label>{label}</Form.Label>
-      <div className="form-radio-group d-flex align-items-center">
+      <div
+        className={`form-radio-group ${
+          stacked ? "" : "d-flex align-items-center"
+        }`}
+      >
         {options &&
           options.map((item) => (
             <div

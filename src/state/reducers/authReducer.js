@@ -5,6 +5,8 @@ import {
   AUTH_LOAD_USER,
   AUTH_ERROR,
   AUTH_LOGOUT,
+  AUTH_PASSWORD_CONFIRMED_SUCCESS,
+  AUTH_PASSWORD_CONFIRMED_ERROR,
 } from "../types";
 
 const initialState = {
@@ -13,6 +15,7 @@ const initialState = {
   token: null,
   user: null,
   error: null,
+  passwordConfirmed: false,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -38,6 +41,19 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: true,
         loading: false,
       };
+    case AUTH_PASSWORD_CONFIRMED_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        passwordConfirmed: true,
+      };
+    case AUTH_PASSWORD_CONFIRMED_ERROR:
+      return {
+        ...state,
+        loading: false,
+        passwordConfirmed: false,
+        error: payload,
+      };
     case AUTH_ERROR:
     case AUTH_LOGOUT:
       return {
@@ -46,6 +62,7 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: false,
         token: null,
         user: null,
+        passwordConfirmed: false,
         error: payload,
       };
     default:

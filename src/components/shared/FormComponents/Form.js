@@ -83,12 +83,11 @@ class Form extends Component {
         placeholder={placeholder}
         onChange={this.handleChange}
         helperText={helperText}
-        size="sm"
       />
     );
   }
 
-  renderDateInput(name, label, placeholder, helperText) {
+  renderDateInput(name, label, showTodayBtn, placeholder, helperText) {
     const { data, errors, pickerShown } = this.state;
 
     const datePickerChangeHandler = (selectedDate) => {
@@ -114,7 +113,6 @@ class Form extends Component {
           onChange={this.handleChange}
           onFocus={() => this.setState({ pickerShown: true })}
           helperText={helperText}
-          size="sm"
           readOnly
         />
         {pickerShown && (
@@ -122,7 +120,7 @@ class Form extends Component {
             currentDate={currentDate()}
             onChange={datePickerChangeHandler}
             onClose={() => this.setState({ pickerShown: false })}
-            showTodayBtn
+            showTodayBtn={showTodayBtn}
           />
         )}
       </>
@@ -162,7 +160,6 @@ class Form extends Component {
         disabled={this.validate()}
         block={isBlock}
         type="submit"
-        size="sm"
       >
         {label}
       </Button>

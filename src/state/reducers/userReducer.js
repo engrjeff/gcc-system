@@ -1,4 +1,10 @@
-import { USER_REQUESTED, GET_USERS_SUCCESS, USER_ERROR } from "../types";
+import {
+  USER_REQUESTED,
+  GET_USERS_SUCCESS,
+  UPDATE_USER_ROLE_SUCCESS,
+  UPDATE_USER_ROLE_ERROR,
+  USER_ERROR,
+} from "../types";
 
 const initialState = {
   users: [],
@@ -20,6 +26,18 @@ const userReducer = (state = initialState, action) => {
         users: payload,
         user: null,
         error: null,
+      };
+    case UPDATE_USER_ROLE_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+      };
+    case UPDATE_USER_ROLE_ERROR:
+      return {
+        ...state,
+        loading: false,
+        error: payload,
       };
     case USER_ERROR:
       return {

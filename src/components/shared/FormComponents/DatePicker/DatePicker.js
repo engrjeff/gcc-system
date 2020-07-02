@@ -126,9 +126,9 @@ const DatePicker = ({
   };
 
   const renderYearsView = () => {
-    // want a 3x3 grid of years, the selected year being the center
+    // want a 4x4 grid of years, the selected year being the center
     const years = [];
-    for (let y = selectedYear - 4; y <= selectedYear + 4; y++) {
+    for (let y = selectedYear - 4; y <= selectedYear + 7; y++) {
       years.push(y);
     }
 

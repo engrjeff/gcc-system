@@ -1,6 +1,8 @@
 import axios from "axios";
 import { API_CALL_BEGAN } from "../types";
 
+const API_URL = "https://gcc-app-server.herokuapp.com";
+
 const api = ({ dispatch }) => (next) => async (action) => {
   if (action.type !== API_CALL_BEGAN) return next(action);
 
@@ -23,10 +25,11 @@ const api = ({ dispatch }) => (next) => async (action) => {
     if (onStart) dispatch({ type: onStart });
 
     const response = await axios.request({
-      url,
+      url: process.env.NODE_ENV === "development" ? url : API_URL + url,
       method,
       data,
       params,
+      withCredentials: true,
     });
 
     if (onSuccess)

@@ -1,14 +1,14 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-const Select = ({ name, label, options, onChange, value, error }) => {
+const Select = ({ name, label, options, onChange, value, error, size, as }) => {
   return (
-    <Form.Group className="form-group">
+    <Form.Group className="form-group" as={as}>
       <Form.Label htmlFor={name}>{label}</Form.Label>
       <Form.Control
         as="select"
         name={name}
-        size="sm"
+        size={size}
         onChange={onChange}
         value={value}
       >

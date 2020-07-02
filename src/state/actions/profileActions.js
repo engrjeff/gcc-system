@@ -22,7 +22,7 @@ export const getProfile = () => (dispatch) => {
 };
 
 // save (create or update) current user's profile
-export const saveProfile = (profile, history, redirectPath, isUpdate) => (
+export const saveProfile = (profile, isUpdate, history, redirectPath) => (
   dispatch
 ) => {
   const afterSuccess = () => {
@@ -31,7 +31,7 @@ export const saveProfile = (profile, history, redirectPath, isUpdate) => (
       type: isUpdate ? "success" : "info",
     };
     dispatch(showAlert(alert));
-    history.push(redirectPath);
+    // history.push(redirectPath);
   };
   dispatch({
     type: API_CALL_BEGAN,
