@@ -5,10 +5,17 @@ import { IconButton } from "../../shared/Misc/MiscComponents";
 import ModalRoleChange from "./ModalRoleChange";
 import ModalPasswordConfirm from "./ModalPasswordConfirm";
 
-const UsersTable = ({ currentUser, users, error, doUpdateUserRole }) => {
+const UsersTable = ({
+  currentUser,
+  users,
+  error,
+  doUpdateUserRole,
+  onSort,
+  sortColumn,
+}) => {
   const UserColumns = [
     {
-      key: "name",
+      path: "name",
       label: "Name",
       content: (item) =>
         item._id === currentUser._id ? (
@@ -21,7 +28,7 @@ const UsersTable = ({ currentUser, users, error, doUpdateUserRole }) => {
     },
     { path: "email", label: "Email" },
     {
-      key: "role",
+      path: "role",
       label: "Role",
       content: (item) => <Badge variant={item.role}>{item.role}</Badge>,
     },
@@ -107,7 +114,12 @@ const UsersTable = ({ currentUser, users, error, doUpdateUserRole }) => {
         onOk={onPasswordModalOkClick}
         error={error}
       />
-      <Table columns={UserColumns} data={users} />
+      <Table
+        columns={UserColumns}
+        data={users}
+        onSort={onSort}
+        sortColumn={sortColumn}
+      />
     </Fragment>
   );
 };

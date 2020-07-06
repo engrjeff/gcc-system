@@ -6,6 +6,7 @@ import Alert from "./Alert/Alert";
 import IconButton from "./IconButton";
 import Wrapper from "./Wrapper";
 import FloatingOptionWrapper from "./FloatingOptionWrapper";
+import Pip from "./Pip";
 import "./misc.css";
 
 export {
@@ -17,4 +18,5 @@ export {
   IconButton,
   FloatingOptionWrapper,
   Wrapper,
+  Pip,
 };

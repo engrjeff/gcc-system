@@ -8,6 +8,7 @@ const Pagination = ({
   currentPage,
   onPageChange,
   isFiltering,
+  isSearching,
 }) => {
   const pagesCount = Math.ceil(itemsCount / pageSize);
   const pages = range(1, pagesCount);
@@ -63,13 +64,19 @@ const Pagination = ({
   };
 
   const renderEntriesCounter = () => {
-    const message = `Showing ${pageSize * currentPage - pageSize + 1} to 
-        ${
-          pageSize * currentPage > itemsCount
-            ? itemsCount
-            : pageSize * currentPage
-        }
-        of ${itemsCount} ${isFiltering ? "filter results" : "entries"}.`;
+    const begin = pageSize * currentPage - pageSize + 1;
+    const end =
+      pageSize * currentPage > itemsCount ? itemsCount : pageSize * currentPage;
+
+    let suffix = itemsCount > 1 ? "entries" : "entry";
+    if (isFiltering)
+      suffix = itemsCount > 1 ? "filter results" : "filter result";
+    if (isSearching)
+      suffix = itemsCount > 1 ? "search results" : "search result";
+    const message =
+      itemsCount > 0
+        ? `Showing ${begin} to ${end} of ${itemsCount} ${suffix}`
+        : "No entries found.";
 
     return <p className="app-entries-count">{message}</p>;
   };

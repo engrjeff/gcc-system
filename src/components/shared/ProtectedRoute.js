@@ -10,12 +10,26 @@ const ProtectedRoute = ({
   isAuthenticated,
   ...rest
 }) => {
+  const renderRedirect = (props) => {
+    const token = localStorage.getItem("token");
+    if (token) return <Redirect to={props.location} />;
+    else
+      return (
+        <Redirect
+          to={{
+            pathname: ROUTES.SIGN_IN,
+            state: { from: props.location },
+          }}
+        />
+      );
+  };
+
   return (
     <Route
       path={path}
       {...rest}
       render={(props) => {
-        if (!isAuthenticated) return <Redirect to={ROUTES.SIGN_IN} />;
+        if (!isAuthenticated) return renderRedirect(props);
         return Component ? <Component {...props} /> : render(props);
       }}
     />

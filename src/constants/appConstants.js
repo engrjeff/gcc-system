@@ -33,7 +33,7 @@ export const MEMBER_TYPES = [
 ];
 
 export const USER_ROLES = [
-  { id: 1, value: "admin", label: "Admin" },
+  // { id: 1, value: "admin", label: "Admin" },
   { id: 2, value: "primary", label: "Primary Leader" },
   { id: 3, value: "leader", label: "Leader" },
 ];

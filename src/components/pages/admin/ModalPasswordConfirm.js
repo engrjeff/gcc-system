@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../../shared/FormComponents/Input";
+import PasswordField from "../../shared/FormComponents/PasswordField";
 import { Modal } from "../../shared/Misc/MiscComponents";
 
 const ModalPasswordConfirm = ({
@@ -19,9 +19,8 @@ const ModalPasswordConfirm = ({
       disabledOkIn={password === ""}
       error={error}
     >
-      <Input
+      <PasswordField
         name="password"
-        type="password"
         label="Confirm your password to continue"
         value={password}
         onChange={onPasswordChange}

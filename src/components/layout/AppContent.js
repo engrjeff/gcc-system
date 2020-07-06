@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import SignIn from "../pages/auth/SignIn";
@@ -7,23 +8,42 @@ import ForgotPassword from "../pages/auth/ForgotPassword";
 import Public from "../pages/home/Public";
 import ProfilePage from "../pages/profile/ProfilePage";
 import AdminPage from "../pages/admin/AdminPage";
+import DashboardPage from "../pages/dashboard/DashboardPage";
+import CellGroupPage from "../pages/groups/CellGroupPage";
+import CellMemberPage from "../pages/members/CellMemberPage";
+import CellReportPage from "../pages/reports/CellReportPage";
+import NotFound from "../pages/Notfound/NotFound";
 import ProtectedRoute from "../shared/ProtectedRoute";
+import { Spinner } from "../shared/Misc/MiscComponents";
 import * as ROUTES from "../../constants/routes";
 
-const AppContent = () => {
+const AppContent = (props) => {
   return (
     <Container>
+      {props.loading && <Spinner />}
       <Switch>
         <Route path={ROUTES.HOME} component={Public} />
         <Route path={ROUTES.SIGN_IN} component={SignIn} />
         <Route path={ROUTES.REGISTER} component={Register} />
         <Route path={ROUTES.FORGOT_PASSWORD} component={ForgotPassword} />
+        <Route path={ROUTES.NOT_FOUND} component={NotFound} />
+        <ProtectedRoute path={ROUTES.DASHBOARD} component={DashboardPage} />
+        <ProtectedRoute path={ROUTES.CELL_GROUPS} component={CellGroupPage} />
+        <ProtectedRoute path={ROUTES.CELL_MEMBERS} component={CellMemberPage} />
+        <ProtectedRoute path={ROUTES.CELL_REPORTS} component={CellReportPage} />
         <ProtectedRoute path={ROUTES.PROFILE} component={ProfilePage} />
         <ProtectedRoute path={ROUTES.ADMIN} component={AdminPage} />
         <Redirect from={ROUTES.BASE} to={ROUTES.SIGN_IN} exact />
+        <Redirect to={ROUTES.NOT_FOUND} />
       </Switch>
     </Container>
   );
 };
 
-export default AppContent;
+const mapStateToProps = (state) => {
+  return {
+    loading: state.ui.loading,
+  };
+};
+
+export default connect(mapStateToProps)(AppContent);

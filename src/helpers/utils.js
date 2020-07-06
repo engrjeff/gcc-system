@@ -55,9 +55,18 @@ export const parseDate = (_date) => {
   return `${month}/${day}/${year}`;
 };
 
+export const getInitials = (name) => {
+  const splitName = name.split(" ");
+  return splitName.length > 1
+    ? splitName[0][0] + splitName[1][0]
+    : splitName[0][0];
+};
+
 export const range = (start, end) => _.range(start, end + 1);
 
 export const paginate = (items, currentPage, pageSize) => {
   const startIndex = (currentPage - 1) * pageSize;
   return _(items).slice(startIndex).take(pageSize).value();
 };
+
+export const sort = (items, path, order) => _.orderBy(items, [path], [order]);

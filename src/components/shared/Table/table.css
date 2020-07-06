@@ -16,6 +16,7 @@
 
 table {
   border-collapse: collapse;
+  width: 100%;
 }
 
 .table th,
@@ -48,10 +49,21 @@ table {
   background-color: var(--primary);
 }
 
+.table.striped tr:nth-child(even) {
+  background-color: #f3f4f5;
+}
+
 .table td.disabled span {
   color: #ddd;
   pointer-events: none;
   backface-visibility: hidden;
+}
+
+.table th div,
+.table td div {
+  display: flex;
+  align-items: center;
+  width: max-content;
 }
 
 .table caption.visually-hidden {
@@ -118,6 +130,11 @@ tr {
 .table .btn {
   font-size: 13px;
   min-width: max-content;
+}
+
+.clickable {
+  cursor: pointer;
+  user-select: none;
 }
 
 @media screen and (max-width: 600px) {

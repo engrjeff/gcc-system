@@ -10,6 +10,7 @@ import FormBrand from "./FormBrand";
 import GoogleButton from "./GoogleButton";
 import DatePicker from "../../shared/FormComponents/DatePicker/DatePicker";
 import "./forms.css";
+import PasswordField from "./PasswordField";
 
 class Form extends Component {
   state = {
@@ -76,6 +77,21 @@ class Form extends Component {
     return (
       <Input
         type={type}
+        name={name}
+        label={label}
+        value={data[name]}
+        error={errors[name]}
+        placeholder={placeholder}
+        onChange={this.handleChange}
+        helperText={helperText}
+      />
+    );
+  }
+
+  renderPasswordField(name, label, placeholder, helperText) {
+    const { data, errors } = this.state;
+    return (
+      <PasswordField
         name={name}
         label={label}
         value={data[name]}

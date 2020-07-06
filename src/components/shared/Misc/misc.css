@@ -13,8 +13,8 @@
 }
 
 .app-icon-button {
-  width: 32px;
-  height: 32px;
+  width: 32px !important;
+  height: 32px !important;
   color: #98a6ad;
   margin-right: 10px;
   position: relative;
@@ -23,6 +23,10 @@
 .back-button:hover,
 .app-icon-button:hover {
   background-color: var(--off-white);
+}
+
+.back-button.on-dark:hover {
+  background-color: var(--primary-light);
 }
 
 .app-icon-button:hover {
@@ -118,6 +122,39 @@
 
 .floating-option-wrapper.show {
   transform: scale(1);
+}
+
+/* PIP */
+.app-pip {
+  display: flex;
+  align-items: center;
+  padding: 2px 8px;
+  background-color: var(--purple-light);
+  color: var(--purple);
+  min-width: 60px;
+  margin: 5px;
+  border-radius: 15px;
+  user-select: none;
+}
+
+.app-pip-text {
+  font-weight: 600;
+  flex: 0 0 1;
+  width: calc(100% - 15px);
+  text-align: center;
+}
+
+.app-pip-dismiss {
+  margin-left: 10px;
+  font-weight: bold;
+  transition: color 0.3s;
+  cursor: pointer;
+  width: 15px;
+  text-align: center;
+}
+
+.app-pip-dismiss:hover {
+  color: var(--danger);
 }
 
 @media screen and (max-width: 600px) {

@@ -11,8 +11,9 @@
 }
 
 .form-profile {
-  width: 80vw;
-  margin-top: 35px;
+  width: 100%;
+  padding: 0;
+  margin-top: 15px;
 }
 
 .form-brand {
@@ -73,9 +74,56 @@
   color: #ccc;
 }
 
+.password-field {
+  position: relative;
+}
+
+.password-field .form-control {
+  padding-right: 32px !important;
+}
+
+.password-field-icon {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.password-field-icon:hover,
+.password-field-icon:active {
+  background-color: var(--off-white);
+}
+
+.password-field-icon > img {
+  width: 70%;
+  height: 70%;
+}
+
+.form-head {
+  display: flex;
+  background-color: var(--primary);
+  color: white;
+  padding: 10px;
+}
+
+.form-head-title {
+  margin-bottom: 0 !important;
+}
+
+.form-head-subtitle {
+  margin-bottom: 0 !important;
+}
+
 @media screen and (max-width: 600px) {
-  .form-auth,
-  .form-profile {
+  .form-auth {
     width: 90vw;
     margin-top: 18px;
     padding: 1rem;

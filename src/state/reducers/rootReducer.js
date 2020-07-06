@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import uiReducer from "./uiReducer";
 import authReducer from "./authReducer";
 import alertReducer from "./alertReducer";
 import userReducer from "./userReducer";
@@ -7,6 +8,7 @@ import cellGroupReducer from "./cellGroupReducer";
 import cellMemberReducer from "./cellMemberReducer";
 
 const rootReducer = combineReducers({
+  ui: uiReducer,
   auth: authReducer,
   alert: alertReducer,
   user: userReducer,

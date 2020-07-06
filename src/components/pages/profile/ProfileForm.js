@@ -2,14 +2,15 @@ import React from "react";
 import Joi from "@hapi/joi";
 import Form from "../../shared/FormComponents/Form";
 import { Form as BForm, Row, Col } from "react-bootstrap";
-import { BackButton } from "../../shared/Misc/MiscComponents";
-import * as ROUTES from "../../../constants/routes";
+import { BackButton, Wrapper } from "../../shared/Misc/MiscComponents";
+import FormHead from "../../shared/FormComponents/FormHead";
 import {
   GENDERS,
   CELL_STATUS,
   CHURCH_STATUS,
   MEMBER_TYPES,
 } from "../../../constants/appConstants";
+import * as ROUTES from "../../../constants/routes";
 import { parseDate } from "../../../helpers/utils";
 
 class ProfileForm extends Form {
@@ -70,43 +71,46 @@ class ProfileForm extends Form {
   render() {
     return (
       <div className="form-profile">
-        <div className="d-flex align-items-center">
-          <BackButton onClick={() => this.props.history.push(ROUTES.PROFILE)} />
-          <div>
-            <h3 className="mb-0">Profile Form</h3>
-            <small className="text-muted">Provide details about you</small>
-          </div>
-        </div>
-        <hr />
-        <BForm onSubmit={this.handleSubmit} className="p-2">
-          {this.renderInput("address", "Address")}
-          {this.renderDateInput("birthdate", "Birthdate", false)}
-          <Row>
-            <Col xs="12" md="6">
-              {this.renderRadioGroup("gender", "Gender", GENDERS)}
-            </Col>
-            <Col xs="12" md="6">
-              {this.renderSelect("type", "Member Type", MEMBER_TYPES)}
-            </Col>
-          </Row>
-          <Row>
-            <Col xs="12" md="6">
-              {this.renderSelect(
-                "cellStatus",
-                "Cell Group Status",
-                CELL_STATUS
-              )}
-            </Col>
-            <Col xs="12" md="6">
-              {this.renderSelect(
-                "churchStatus",
-                "Church Status",
-                CHURCH_STATUS
-              )}
-            </Col>
-          </Row>
-          {this.renderSubmitButton("Save")}
-        </BForm>
+        <FormHead
+          formTitle="Profile Form"
+          formSubTitle="Provide details about you"
+        >
+          <BackButton
+            isOnDark={true}
+            onClick={() => this.props.history.push(ROUTES.PROFILE)}
+          />
+        </FormHead>
+        <Wrapper>
+          <BForm onSubmit={this.handleSubmit} className="p-2">
+            {this.renderInput("address", "Address")}
+            {this.renderDateInput("birthdate", "Birthdate", false)}
+            <Row>
+              <Col xs="12" md="6">
+                {this.renderRadioGroup("gender", "Gender", GENDERS)}
+              </Col>
+              <Col xs="12" md="6">
+                {this.renderSelect("type", "Member Type", MEMBER_TYPES)}
+              </Col>
+            </Row>
+            <Row>
+              <Col xs="12" md="6">
+                {this.renderSelect(
+                  "cellStatus",
+                  "Cell Group Status",
+                  CELL_STATUS
+                )}
+              </Col>
+              <Col xs="12" md="6">
+                {this.renderSelect(
+                  "churchStatus",
+                  "Church Status",
+                  CHURCH_STATUS
+                )}
+              </Col>
+            </Row>
+            {this.renderSubmitButton("Save")}
+          </BForm>
+        </Wrapper>
       </div>
     );
   }

@@ -21,7 +21,7 @@ const TableBody = ({ data, columns }) => {
                   column.disabled && column.disabled(item) ? "disabled" : ""
                 }`}
               >
-                {renderCell(item, column)}
+                <div> {renderCell(item, column)}</div>
               </td>
             ))}
           </tr>

@@ -3,7 +3,6 @@ import { Redirect } from "react-router-dom";
 import Joi from "@hapi/joi";
 import { Form as BForm } from "react-bootstrap";
 import Form from "../../shared/FormComponents/Form";
-import { Spinner } from "../../shared/Misc/MiscComponents";
 import * as ROUTES from "../../../constants/routes";
 
 import { connect } from "react-redux";
@@ -28,15 +27,21 @@ class SignIn extends Form {
   }
 
   render() {
-    if (this.props.isAuthenticated) return <Redirect to={ROUTES.PROFILE} />;
+    if (this.props.isAuthenticated) {
+      const { state } = this.props.location;
+      return state ? (
+        <Redirect to={state.from.pathname} />
+      ) : (
+        <Redirect to={ROUTES.DASHBOARD} />
+      );
+    }
 
     return (
       <div className="form-auth">
-        {this.props.loading && <Spinner />}
         <BForm onSubmit={this.handleSubmit}>
           {this.renderBrand()}
           {this.renderInput("email", "Email", "text")}
-          {this.renderInput("password", "Password", "password")}
+          {this.renderPasswordField("password", "Password")}
           {this.renderForgotPassword(ROUTES.FORGOT_PASSWORD)}
           {this.props.signInError && this.renderError(this.props.signInError)}
           {this.renderSubmitButton("Sign In", true)}

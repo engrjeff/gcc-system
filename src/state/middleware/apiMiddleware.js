@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_CALL_BEGAN } from "../types";
+import { API_CALL_BEGAN, TOGGLE_LOADER } from "../types";
 
 const API_URL = "https://gcc-app-server.herokuapp.com";
 
@@ -22,6 +22,8 @@ const api = ({ dispatch }) => (next) => async (action) => {
   } = action.payload;
 
   try {
+    dispatch({ type: TOGGLE_LOADER });
+
     if (onStart) dispatch({ type: onStart });
 
     const response = await axios.request({
@@ -32,6 +34,8 @@ const api = ({ dispatch }) => (next) => async (action) => {
       withCredentials: true,
     });
 
+    dispatch({ type: TOGGLE_LOADER });
+
     if (onSuccess)
       dispatch({
         type: onSuccess,
@@ -41,6 +45,8 @@ const api = ({ dispatch }) => (next) => async (action) => {
     if (afterSuccess)
       afterSuccess.type ? dispatch(afterSuccess) : afterSuccess(response.data);
   } catch (error) {
+    dispatch({ type: TOGGLE_LOADER });
+
     if (onError)
       dispatch({
         type: onError,

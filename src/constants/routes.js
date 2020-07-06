@@ -2,6 +2,7 @@ export const SIGN_IN = "/signin";
 export const REGISTER = "/register/:primary_id";
 export const FORGOT_PASSWORD = "/forgotpw";
 export const HOME = "/home";
+export const NOT_FOUND = "/notfound";
 export const BASE = "/";
 
 export const ADMIN = "/admin";

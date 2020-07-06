@@ -10,7 +10,7 @@ import {
 const initialState = {
   loading: false,
   allMembers: {},
-  members: {},
+  userMembers: {},
   error: null,
 };
 
@@ -26,7 +26,7 @@ const cellMemberReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        members: { ...payload },
+        userMembers: { ...payload },
         error: null,
       };
     case CREATE_MEMBER_SUCCESS:
@@ -47,7 +47,7 @@ const cellMemberReducer = (state = initialState, action) => {
         ...state,
         loading: false,
         error: null,
-        members: {},
+        userMembers: {},
       };
     default:
       return state;

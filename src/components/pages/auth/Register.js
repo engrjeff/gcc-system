@@ -4,7 +4,6 @@ import Joi from "@hapi/joi";
 import * as ROUTES from "../../../constants/routes";
 import Form from "../../shared/FormComponents/Form";
 import { Form as BForm } from "react-bootstrap";
-import { Spinner } from "../../shared/Misc/MiscComponents";
 
 import { connect } from "react-redux";
 import { register } from "../../../state/actions/authActions";
@@ -35,16 +34,22 @@ class Register extends Form {
   }
 
   render() {
-    if (this.props.isAuthenticated) return <Redirect to={ROUTES.DASHBOARD} />;
+    if (this.props.isAuthenticated) {
+      const { state } = this.props.location;
+      return state ? (
+        <Redirect to={state.from.pathname} />
+      ) : (
+        <Redirect to={ROUTES.DASHBOARD} />
+      );
+    }
 
     return (
       <div className="form-auth">
-        {this.props.loading && <Spinner />}
         <BForm onSubmit={this.handleSubmit}>
           {this.renderBrand("Create your account")}
           {this.renderInput("name", "Name", "text")}
           {this.renderInput("email", "Email", "text")}
-          {this.renderInput("password", "Password", "password")}
+          {this.renderPasswordField("password", "Password")}
           {this.props.signInError && this.renderError(this.props.signInError)}
           {this.renderSubmitButton("Register", true)}
         </BForm>

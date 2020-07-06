@@ -12,11 +12,12 @@ import {
 import { showAlert } from "../actions/alertActions";
 
 // Get current user's cell members
-export const getCurrentUserCellMembers = () => async (dispatch) => {
+export const getCurrentUserCellMembers = (params = {}) => async (dispatch) => {
   dispatch({
     type: API_CALL_BEGAN,
     payload: {
       url: "/api/v1/cellmember/me",
+      params,
       onStart: MEMBERS_REQUESTED,
       onSuccess: GET_MEMBERS_SUCCESS,
       onError: MEMBERS_ERROR,

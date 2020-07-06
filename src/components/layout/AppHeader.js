@@ -5,6 +5,7 @@ import { Spinner, Modal } from "../shared/Misc/MiscComponents";
 import { TogglerContext } from "../../context/TogglerContext";
 import { connect } from "react-redux";
 import { logout } from "../../state/actions/authActions";
+import { getInitials } from "../../helpers/utils";
 import * as ROUTES from "../../constants/routes";
 
 const AppHeader = (props) => {
@@ -21,7 +22,7 @@ const AppHeader = (props) => {
         onClick={() => setShowUserOptions((prev) => !prev)}
       >
         <div className="user-avatar">
-          <h6 className="mb-0">{user.name[0]}</h6>
+          <h6 className="mb-0">{getInitials(user.name)}</h6>
         </div>
         <p className="user-avatar-name mb-0 px-2 d-none d-sm-block">
           {user.name}

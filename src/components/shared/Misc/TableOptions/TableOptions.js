@@ -10,9 +10,8 @@ const PageSizes = [5, 10, 20, 30];
 const TableOptions = ({
   currentPageSize,
   onPageSizeChange,
-  onSearchChange,
-  onSearchSubmit,
-  searchTextValue,
+  onSearch,
+  searchQuery,
   filterOptions,
   onFilterSelect,
   currentFilter,
@@ -67,9 +66,8 @@ const TableOptions = ({
       <div className="table-options-search">
         <Search
           name="user-table-search"
-          onSearch={onSearchSubmit}
-          onChange={onSearchChange}
-          value={searchTextValue}
+          onSearch={onSearch}
+          value={searchQuery}
         />
       </div>
     </div>

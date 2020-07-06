@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import ProfileView from "./ProfileView";
 import ProfileForm from "./ProfileForm";
-import { Spinner } from "../../shared/Misc/MiscComponents";
 
 import { connect } from "react-redux";
 import { getProfile, saveProfile } from "../../../state/actions/profileActions";
@@ -14,8 +13,6 @@ const ProfilePage = (props) => {
   useEffect(() => {
     getProfile();
   }, [getProfile]);
-
-  if (userProfile.loading) return <Spinner />;
 
   return (
     <div>

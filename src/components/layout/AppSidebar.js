@@ -50,22 +50,14 @@ const AppSidebar = (props) => {
   const renderSidebarMenu = () => {
     return (
       <div onClick={() => setTogglerState(false)}>
-        {isAuthenticated ? (
+        {isAuthenticated && user ? (
           <Fragment>
             {renderNavLinks(PersonalMenuItems, user.name)}
             {renderNavLinks(CellGroupMenuItems, "Cell Group Management")}
-            {user.role === "admin" &&
-              renderNavLinks(AdminMenuItems, "Administration")}
+            {user.isAdmin && renderNavLinks(AdminMenuItems, "Administration")}
           </Fragment>
         ) : null}
       </div>
-      // <Nav as="ul" onClick={() => setTogglerState(false)}>
-      //   {isAuthenticated && user
-      //     ? user.role === "admin"
-      //       ? renderAdminSideMenu()
-      //       : renderRegularSideMenu()
-      //     : null}
-      // </Nav>
     );
   };
 
@@ -74,17 +66,25 @@ const AppSidebar = (props) => {
   }`;
 
   return (
-    <div className={classes}>
-      <span
-        className="fas fa-times menu-close-btn"
-        onClick={() => setTogglerState(false)}
-      ></span>
-      <div className="app-sidebar-head">
-        <img src={logo} alt="gcc logo" className="app-sidebar-logo" />
-        <p className="app-sidebar-text">Grace City Church</p>
+    <Fragment>
+      {togglerState && (
+        <div
+          onClick={() => setTogglerState(false)}
+          className="app-sidebar-overlay"
+        ></div>
+      )}
+      <div className={classes}>
+        <span
+          className="fas fa-times menu-close-btn"
+          onClick={() => setTogglerState(false)}
+        ></span>
+        <div className="app-sidebar-head">
+          <img src={logo} alt="gcc logo" className="app-sidebar-logo" />
+          <p className="app-sidebar-text">Grace City Church</p>
+        </div>
+        {renderSidebarMenu()}
       </div>
-      {renderSidebarMenu()}
-    </div>
+    </Fragment>
   );
 };
 
