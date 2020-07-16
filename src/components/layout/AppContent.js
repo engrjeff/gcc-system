@@ -12,6 +12,7 @@ import DashboardPage from "../pages/dashboard/DashboardPage";
 import CellGroupPage from "../pages/groups/CellGroupPage";
 import CellMemberPage from "../pages/members/CellMemberPage";
 import CellReportPage from "../pages/reports/CellReportPage";
+import ChurchPage from "../pages/church/ChurchPage";
 import NotFound from "../pages/Notfound/NotFound";
 import ProtectedRoute from "../shared/ProtectedRoute";
 import { Spinner } from "../shared/Misc/MiscComponents";
@@ -33,6 +34,7 @@ const AppContent = (props) => {
         <ProtectedRoute path={ROUTES.CELL_REPORTS} component={CellReportPage} />
         <ProtectedRoute path={ROUTES.PROFILE} component={ProfilePage} />
         <ProtectedRoute path={ROUTES.ADMIN} component={AdminPage} />
+        <ProtectedRoute path={ROUTES.CHURCH} component={ChurchPage} />
         <Redirect from={ROUTES.BASE} to={ROUTES.SIGN_IN} exact />
         <Redirect to={ROUTES.NOT_FOUND} />
       </Switch>

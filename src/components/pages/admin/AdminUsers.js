@@ -19,14 +19,14 @@ const AdminUsers = (props) => {
     user,
   } = props;
 
-  const [pageSize, setPageSize] = useState(5);
+  const [pageSize, setPageSize] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedRoleFilter, setSelectedRoleFilter] = useState("");
   const [sortColumn, setSortColumn] = useState({ path: "name", order: "asc" });
   const [searchQuery, setSearchQuery] = useState("");
 
   const doGetUsers = () => {
-    getUsers({ sortBy: "name" });
+    getUsers({ sortBy: "createdAt" });
   };
 
   const doUpdateUserRole = (password, role, selectedUserId, callbackFunc) => {

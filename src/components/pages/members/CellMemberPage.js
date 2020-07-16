@@ -6,7 +6,7 @@ import CellMemberEmpty from "./CellMemberEmpty";
 import CellMemberPageBody from "./CellMemberPageBody";
 
 const CellMemberPage = (props) => {
-  const { getCurrentUserCellMembers, members } = props;
+  const { getCurrentUserCellMembers, members, user } = props;
 
   useEffect(() => {
     getCurrentUserCellMembers({ sortBy: "name" });
@@ -17,7 +17,7 @@ const CellMemberPage = (props) => {
       {members.length === 0 ? (
         <CellMemberEmpty />
       ) : (
-        <CellMemberPageBody members={members.data} />
+        <CellMemberPageBody members={members.data} user={user} />
       )}
     </Fragment>
   );
@@ -26,6 +26,7 @@ const CellMemberPage = (props) => {
 const mapStateToProps = (state) => {
   return {
     members: state.member.userMembers,
+    user: state.auth.user,
   };
 };
 

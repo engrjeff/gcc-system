@@ -37,3 +37,9 @@ export const USER_ROLES = [
   { id: 2, value: "primary", label: "Primary Leader" },
   { id: 3, value: "leader", label: "Leader" },
 ];
+
+export const MEMBER_SORT_PATHS = [
+  { id: 1, value: "name", label: "Name" },
+  { id: 2, value: "profile.cellStatus", label: "Cell Status" },
+  { id: 3, value: "profile.churchStatus", label: "Church Status" },
+];

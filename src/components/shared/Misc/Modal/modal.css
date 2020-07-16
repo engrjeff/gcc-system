@@ -21,9 +21,10 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   border-radius: 4px;
   position: relative;
+  padding: 10px 20px;
   /* min-height: 40%; */
   max-height: 87%;
-  min-width: 50%;
+  min-width: 40%;
   max-width: 95%;
   display: flex;
   flex-direction: column;
@@ -32,8 +33,6 @@
 }
 .app-modal-header {
   width: 100%;
-  height: 50px;
-  padding: 10px 15px;
   display: flex;
   align-items: center;
   user-select: none;
@@ -44,7 +43,7 @@
 }
 .app-modal-closebtn {
   width: 30px;
-  height: 100%;
+  height: 30px;
   margin-left: auto;
 
   cursor: pointer;
@@ -65,9 +64,9 @@
 
 .app-modal-body {
   width: 100%;
-  padding: 10px 15px;
   max-height: 40%;
   overflow-y: auto;
+  padding: 8px 0;
 }
 
 .app-modal-error {
@@ -80,9 +79,8 @@
 }
 
 .app-modal-footer {
-  margin-top: auto;
+  margin-top: 10px;
   width: 100%;
-  padding: 15px 15px;
   display: flex;
   align-items: center;
 }

@@ -60,11 +60,6 @@ const TokenLinkGenerator = ({ user }) => {
                     >
                       <span className="fas fa-clipboard"></span>
                     </Button>
-                    // <span
-                    //   className="fas fa-clipboard app-clipboard-btn mr-2 py-2 bg-primary-light text-white"
-                    //   onClick={copyTokenLinkToClipboard}
-                    //   title="copy"
-                    // ></span>
                   )}
                 </Col>
               </Row>

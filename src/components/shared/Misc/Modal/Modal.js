@@ -3,13 +3,13 @@ import "./modal.css";
 
 const Modal = ({
   title,
-  shown = false,
-  hasFooter = true,
+  shown,
+  hasFooter,
   onClose,
   onOk,
-  oKText = "Ok",
+  oKText,
   children,
-  disabledOkIn = false,
+  disabledOkIn,
   error,
 }) => {
   return (
@@ -45,6 +45,13 @@ const Modal = ({
       </div>
     </div>
   );
+};
+
+Modal.defaultProps = {
+  shown: false,
+  hasFooter: true,
+  oKText: "Ok",
+  disabledOkIn: false,
 };
 
 export default Modal;

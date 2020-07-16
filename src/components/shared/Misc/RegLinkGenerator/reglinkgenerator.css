@@ -1,0 +1,47 @@
+.reg-link-container {
+  padding: 5px;
+  width: 410px;
+}
+
+.reg-link-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.reg-link-row .app-icon-button {
+  margin-left: auto;
+  margin-right: 0 !important;
+}
+
+.reg-link-help {
+  padding: 5px;
+  background-color: var(--off-white);
+  color: var(--primary);
+}
+
+.reg-link-url {
+  padding: 5px;
+  min-height: 50px;
+  background-color: var(--off-white);
+  color: var(--primary);
+  margin-bottom: 0;
+  width: 100%;
+  white-space: pre-wrap; /* Since CSS 2.1 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
+}
+
+.copy-btn {
+  margin-left: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .reg-link-container {
+    width: 80vw;
+  }
+}

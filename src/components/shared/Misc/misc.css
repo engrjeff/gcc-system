@@ -127,6 +127,7 @@
 /* PIP */
 .app-pip {
   display: flex;
+  justify-content: center;
   align-items: center;
   padding: 2px 8px;
   background-color: var(--purple-light);
@@ -157,9 +158,35 @@
   color: var(--danger);
 }
 
+.floating-btn {
+  position: absolute;
+  bottom: 80px;
+  right: 14%;
+  border-radius: 50% !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.floating-btn > button {
+  border-radius: 50% !important;
+}
+
+.react-switch-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 10px 0 5px 0;
+}
+
+.react-switch-wrapper label {
+  width: 92px;
+}
+
 @media screen and (max-width: 600px) {
   .floating-option-wrapper {
     top: 30px;
     left: -100px;
+  }
+  .floating-btn {
+    bottom: 30px;
+    right: 14%;
   }
 }

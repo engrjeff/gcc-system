@@ -7,6 +7,9 @@ import IconButton from "./IconButton";
 import Wrapper from "./Wrapper";
 import FloatingOptionWrapper from "./FloatingOptionWrapper";
 import Pip from "./Pip";
+import FloatingButton from "./FloatingButton";
+import RegLinkGenerator from "./RegLinkGenerator/RegLinkGenerator";
+import ReactSwitch from "./ReactSwitch";
 import "./misc.css";
 
 export {
@@ -19,4 +22,7 @@ export {
   FloatingOptionWrapper,
   Wrapper,
   Pip,
+  FloatingButton,
+  RegLinkGenerator,
+  ReactSwitch,
 };

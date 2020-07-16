@@ -1,14 +1,9 @@
 import React, { useState } from "react";
 import Search from "../../shared/FormComponents/Search";
 import Select from "../../shared/FormComponents/Select";
-import { IconButton, Pip } from "../../shared/Misc/MiscComponents";
+import { IconButton, Pip, Modal } from "../../shared/Misc/MiscComponents";
 import CellMemberHeadOptions from "./CellMemberHeadOptions";
-
-const sortPaths = [
-  { id: 1, value: "name", label: "Name" },
-  { id: 2, value: "profile.cellStatus", label: "Cell Status" },
-  { id: 3, value: "profile.churchStatus", label: "Church Status" },
-];
+import { MEMBER_SORT_PATHS } from "../../../constants/appConstants";
 
 const CellMemberPageHead = (props) => {
   const {
@@ -58,10 +53,26 @@ const CellMemberPageHead = (props) => {
           <h6 className="member-head-title">Cell Members List</h6>
           <small className="member-head-count">{renderCount()}</small>
         </div>
+
+        <div className="member-filters">
+          {(filters.cellStatus || filters.churchStatus) && (
+            <h6 className="member-filter-text">Filters</h6>
+          )}
+          <Pip
+            dismissable
+            text={filters.cellStatus}
+            onDismiss={() => handleFilterRemove("cellStatus")}
+          />
+          <Pip
+            dismissable
+            text={filters.churchStatus}
+            onDismiss={() => handleFilterRemove("churchStatus")}
+          />
+        </div>
         <div className="member-sortby">
-          <label className="form-label">Sort by </label>
+          <label className="form-label">Sort By</label>
           <Select
-            options={sortPaths}
+            options={MEMBER_SORT_PATHS}
             value={sortPath.path}
             onChange={raiseSort}
             size="sm"
@@ -80,28 +91,22 @@ const CellMemberPageHead = (props) => {
             icon="ellipsis-v"
             onClick={() => setShowFilters((s) => !s)}
           />
-          {showFilters && (
+          <Modal
+            shown={showFilters}
+            onClose={() => setShowFilters(false)}
+            hasFooter={false}
+            title="Filters"
+          >
             <CellMemberHeadOptions
               onApply={handleApplyFilter}
               onClose={() => setShowFilters(false)}
               cellStatus={filters.cellStatus}
               churchStatus={filters.churchStatus}
+              raiseSort={raiseSort}
+              sortPath={sortPath}
             />
-          )}
+          </Modal>
         </div>
-      </div>
-      <div className="member-filters">
-        {(filters.cellStatus || filters.churchStatus) && (
-          <h6 className="member-filter-text">Filters</h6>
-        )}
-        <Pip
-          text={filters.cellStatus}
-          onDismiss={() => handleFilterRemove("cellStatus")}
-        />
-        <Pip
-          text={filters.churchStatus}
-          onDismiss={() => handleFilterRemove("churchStatus")}
-        />
       </div>
     </div>
   );

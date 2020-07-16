@@ -20,6 +20,11 @@ const AppSidebar = (props) => {
   const AdminMenuItems = [
     { path: ROUTES.ADMIN, icon: "user-lock", label: "Admin" },
   ];
+
+  const ChurchMenuItems = [
+    { path: ROUTES.CHURCH, icon: "file-alt", label: "GPS" },
+  ];
+
   const { togglerState, setTogglerState } = useContext(TogglerContext);
   const { isAuthenticated, user } = props;
 
@@ -54,6 +59,8 @@ const AppSidebar = (props) => {
           <Fragment>
             {renderNavLinks(PersonalMenuItems, user.name)}
             {renderNavLinks(CellGroupMenuItems, "Cell Group Management")}
+            {(user.isAdmin || user.role === "primary") &&
+              renderNavLinks(ChurchMenuItems, "Growth Process System")}
             {user.isAdmin && renderNavLinks(AdminMenuItems, "Administration")}
           </Fragment>
         ) : null}

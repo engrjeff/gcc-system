@@ -9,6 +9,8 @@ export const ADMIN = "/admin";
 export const ADMIN_MEMBERS = "/admin/members";
 export const ADMIN_USERS = "/admin/users";
 
+export const CHURCH = "/gps";
+
 export const DASHBOARD = "/dashboard";
 
 export const PROFILE = "/profile";

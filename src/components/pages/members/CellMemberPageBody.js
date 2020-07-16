@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import { Wrapper } from "../../shared/Misc/MiscComponents";
 import CellMemberList from "./CellMemberList";
 import CellMemberPageHead from "./CellMemberPageHead";
+import { Wrapper } from "../../shared/Misc/MiscComponents";
 import { sort } from "../../../helpers/utils";
 
-const CellMemberPageBody = ({ members }) => {
+const CellMemberPageBody = ({ members, user }) => {
   const [sortPath, setSortPath] = useState({ path: "name", order: "asc" });
   const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({
-    cellStatus: "R",
-    churchStatus: "CICS",
+    cellStatus: "",
+    churchStatus: "",
   });
 
   const handleSort = (path) => setSortPath(path);
@@ -72,7 +72,7 @@ const CellMemberPageBody = ({ members }) => {
           onFilter={handleFilter}
           filters={filters}
         />
-        <CellMemberList members={getDisplayData().data} />
+        <CellMemberList members={getDisplayData().data} user={user} />
       </Wrapper>
     </div>
   );

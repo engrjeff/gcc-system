@@ -1,9 +1,24 @@
 import React from "react";
 import { Form } from "react-bootstrap";
 
-const Select = ({ name, label, options, onChange, value, error, size, as }) => {
+const Select = ({
+  name,
+  label,
+  options,
+  onChange,
+  value,
+  error,
+  size,
+  as,
+  inline,
+}) => {
   return (
-    <Form.Group className="form-group" as={as}>
+    <Form.Group
+      className={
+        inline ? "form-group d-flex align-items-center mb-1" : "form-group"
+      }
+      as={as}
+    >
       <Form.Label htmlFor={name}>{label}</Form.Label>
       <Form.Control
         as="select"
@@ -11,6 +26,7 @@ const Select = ({ name, label, options, onChange, value, error, size, as }) => {
         size={size}
         onChange={onChange}
         value={value}
+        className={inline ? "w-75 ml-auto" : ""}
       >
         <option key="*" value="" disabled>
           *

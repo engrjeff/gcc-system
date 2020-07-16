@@ -33,7 +33,7 @@ const PasswordField = ({
         {value !== "" && (
           <div className="password-field-icon" onClick={toggleShowPassword}>
             <span
-              className={!showPassword ? "fas fa-eye-slash" : "fas fa-eye"}
+              className={showPassword ? "fas fa-eye-slash" : "fas fa-eye"}
             />
           </div>
         )}

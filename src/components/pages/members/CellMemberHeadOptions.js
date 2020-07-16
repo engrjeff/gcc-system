@@ -1,24 +1,42 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Button } from "react-bootstrap";
+// import Select from "../../shared/FormComponents/Select";
 import { CELL_STATUS, CHURCH_STATUS } from "../../../constants/appConstants";
-import { IconButton } from "../../shared/Misc/MiscComponents";
 
 const CellMemberHeadOptions = ({
   onApply,
   cellStatus,
   churchStatus,
   onClose,
+  raiseSort,
+  sortPath,
 }) => {
   const [filter, setFilter] = useState({
-    cellStatus,
-    churchStatus,
+    cellStatus: "",
+    churchStatus: "",
   });
+
+  useEffect(() => {
+    setFilter({
+      cellStatus,
+      churchStatus,
+    });
+  }, [cellStatus, churchStatus]);
 
   const handleSelect = (key, value) => setFilter({ ...filter, [key]: value });
 
+  const handleClose = () => {
+    setFilter((p) => ({
+      cellStatus,
+      churchStatus,
+    }));
+
+    onClose();
+  };
+
   const handleAppy = () => {
     onApply({ ...filter });
-    onClose();
+    handleClose();
   };
 
   const handleReset = () => {
@@ -26,13 +44,11 @@ const CellMemberHeadOptions = ({
       cellStatus: "",
       churchStatus: "",
     }));
-
-    onApply({ ...filter });
   };
 
   const renderListOptions = (options = [], current, title, key) => {
     return (
-      <Fragment>
+      <div className="member-options-list">
         <h6 className="option-title">{title}</h6>
         <ul className="option-list">
           {options.map((item) => (
@@ -47,17 +63,22 @@ const CellMemberHeadOptions = ({
             </li>
           ))}
         </ul>
-      </Fragment>
+      </div>
     );
   };
 
   return (
-    <div className="float-options show member-options">
+    <Fragment>
+      {/* <div className="member-options-sort">
+        <h6 className="option-title">Sort by </h6>
+        <Select
+          options={MEMBER_SORT_PATHS}
+          value={sortPath.path}
+          onChange={raiseSort}
+          size="sm"
+        />
+      </div> */}
       <div className="member-options-filter">
-        <div className="option-head">
-          <h6>Filter Options</h6>
-          <IconButton icon="times" onClick={onClose} />
-        </div>
         {renderListOptions(
           CELL_STATUS,
           filter.cellStatus,
@@ -71,7 +92,7 @@ const CellMemberHeadOptions = ({
           "churchStatus"
         )}
         <div className="options-button">
-          <Button size="sm" onClick={handleReset}>
+          <Button size="sm" variant="outline-primary" onClick={handleReset}>
             Reset
           </Button>
           <Button size="sm" onClick={handleAppy}>
@@ -79,7 +100,7 @@ const CellMemberHeadOptions = ({
           </Button>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 
